@@ -1,0 +1,21 @@
+table {
+    text-align: center;
+    margin: auto;
+    margin-top: 10px !important;
+    border: #5566C8 2px solid;
+}
+
+th {
+    width: 50%;
+    margin: 0 auto;
+}
+
+td {
+    margin: 0 auto;
+    width: 50%;
+}
+
+.active {
+    color: whitesmoke !important;
+    background-color: #5566C8 !important;
+}

@@ -23,8 +23,8 @@ let fullHeader = `
     </header>
     <menu>
         <li><a href="index.html">Főoldal</a></li>
-        <li><a href="pages/login.html">Bejelentkezés</a></li>
         <li><a href="pages/register.html">Regisztráció</a></li>
+        <li><a href="pages/login.html">Bejelentkezés</a></li>
         ${headerDown}
         <li><a href="pages/profil.html">Profil</a></li>
     </menu>`;

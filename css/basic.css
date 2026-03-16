@@ -1,0 +1,26 @@
+* {
+    padding: 10px;
+    margin: auto;
+    background-color: whitesmoke;
+    color: #5566C8;
+    text-align: center;
+}
+
+header {
+    font-size: 2em;
+    font-weight: bold;
+    border: #5566C8 3px solid;
+}
+
+menu {
+    border: #5566C8 2px solid;
+    margin-top: 0.5%;
+    flex-direction: row;
+    display: flexbox;
+    text-align: center;
+}
+
+menu li {
+    display: inline-block;
+    margin: auto;
+}

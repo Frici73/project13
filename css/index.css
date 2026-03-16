@@ -1,0 +1,8 @@
+div h1, div h2, div p {
+    text-align: left;
+}
+
+div {
+    border: #5566C8 2px solid;
+    margin-top: 20px;
+}

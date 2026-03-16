@@ -3,17 +3,17 @@ console.log("Basic JS betöltve!");
 // Alapvető HTML struktúra létrehozása ellenőrzött módon
 let headerDown = ``;
 if (false) { // cég
-    headerDown = `<li><a href="pages/uploader.html">Álláshirdetés</a></li>`;
+    headerDown = `<li><a href="pages/uploader.html">Álláshirdetés</a></li>
+        <li><a href="pages/searcherASC.html">Munkaerő kereső</a></li>`;
 }
 else if (false) { // magánszemély
-    headerDown = `<li><a href="pages/searcher.html">Álláskereső</a></li>
-        <li><a href="pages/statistic.html">Statisztikák</a></li>`;
+    headerDown = `<li><a href="pages/searcherASP.html">Álláskereső</a></li>`;
 }
 else { // vendég / tesztelő
     headerDown = `
         <li><a href="pages/uploader.html">Álláshirdetés</a></li>
-        <li><a href="pages/searcher.html">Álláskereső</a></li>
-        <li><a href="pages/statistic.html">Statisztikák</a></li>`;
+        <li><a href="pages/searcherASP.html">Álláskereső</a></li>
+        <li><a href="pages/searcherASC.html">Munkaerő kereső</a></li>`;
 }
 let icon = `<link rel="icon" href="imgs/icon.ico" type="image/x-icon">`;
 let fullHeader = `
@@ -27,6 +27,7 @@ let fullHeader = `
         <li><a href="pages/login.html">Bejelentkezés</a></li>
         ${headerDown}
         <li><a href="pages/profil.html">Profil</a></li>
+        <li><a href="pages/mail.html">Levelező</a></li>
     </menu>`;
 if (document.title !== "WS - Főoldal") {
     fullHeader = fullHeader.replaceAll("index.html", "../index.html")

@@ -1,14 +1,8 @@
-<!DOCTYPE html>
-<html lang="hu">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/basic.css">
-    <link rel="stylesheet" href="../css/register_and_login.css">
-    <title>WS - Regisztráció</title>
-</head>
-<body>
-    <script src="../js/basic.js"></script>
+<?php 
+    $title = "Regisztráció";
+    $css = "register_and_login.css";
+    require 'layout/header.php';
+?>
     <table>
         <tr>
             <th><input type="button" value="Regisztráció magánszemélyként" id="magan"></th>
@@ -43,6 +37,7 @@
         </tr>
     </table>
     
-    <script src="../js/register.js"></script>
-</body>
-</html>
+<?php
+    $script = "register.js";
+    require "layout/footer.php";
+?>

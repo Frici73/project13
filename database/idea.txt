@@ -1,0 +1,37 @@
+-- adattáblák
+
+People
+    int id Auto_Inc - Primary
+    Varchar(30) email
+    Varchar(40) username
+    Varchar(255) --password--
+    blob image
+    int fakeDatas
+
+Factory
+    Varchar(30) email
+    Varchar(40) username
+    Varchar(255) --password--
+    blob image
+    Varchar(11) taxID - Primary key
+    int fakeDatas
+
+Professions
+    int id - Auto_Inc - Primary
+    Varchar(40) name
+    int fakeVote
+
+
+-- kapcsolatok
+
+AdvertisementFromPeople
+    int id (Professions.id && People.id) (sok-sok), Auto_Inc, Primary
+    int value
+    bool mode (true:minvalue | false:~value)
+    Text requirement
+
+AdvertisementFromFactory
+    int id (Professions.id && Factory.id) (sok-sok), Auto_Inc, Primary
+    int value
+    bool mode (true:maxvalue | false:~value)
+    Text requirement

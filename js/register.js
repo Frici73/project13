@@ -1,26 +1,5 @@
 console.log("Regisztráció JS betöltve");
 
-
-// Jelszó megjelenítése / elrejtése dupla kattintással
-function showPassword(input) {
-    console.log("Jelszó megjelenítése");
-    if (input.type === "password") {
-        input.type = "text";
-        console.log("Jelszó megjelenítve");
-    } else {
-        input.type = "password";
-        console.log("Jelszó elrejtve");
-    }
-}
-
-for (var input of document.getElementsByTagName("input")) {
-    if (input.type === "password") {
-        input.addEventListener("dblclick", function() {
-            showPassword(this);
-        });
-    }
-}
-
 // Regisztrációs típus választása és frontend hozzáigazítása
 let reg = 0; // 0 magán | 1 cég
 function changeType(type) { 
@@ -124,3 +103,33 @@ document.getElementById("reg").addEventListener("click", function() {
         alert("A megadott email cím már használatban van!");
     }
 });
+
+window.onload = (e) => {
+    console.log("Az oldal betöltődött!")
+    document.getElementById("fileSelector").onclick = (e) => {
+        document.getElementById("profileImage").click()
+    }
+    document.getElementById("profileImage").onchange = (e) => {
+        document.getElementById("fileSelector").innerText = e.href
+    }
+};
+
+
+function showPassword(input) {
+        console.log("Jelszó megjelenítése");
+        if (input.type === "password") {
+            input.type = "text";
+            console.log("Jelszó megjelenítve");
+        } else {
+            input.type = "password";
+            console.log("Jelszó elrejtve");
+        }
+    }
+
+for (var input of document.getElementsByTagName("input")) {
+        if (input.type === "password") {
+            input.addEventListener("dblclick", function() {
+                showPassword(this);
+            });
+        }
+    }

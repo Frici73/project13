@@ -1,37 +1,39 @@
 -- adattáblák
 
-People
+// személy vagy cég mint felhasználó
+Profil
     int id Auto_Inc - Primary
     Varchar(30) email
     Varchar(40) username
     Varchar(255) --password--
     blob image
     int fakeDatas
+    Varchar(11) taxID
+    teloszam
 
-Factory
-    Varchar(30) email
-    Varchar(40) username
-    Varchar(255) --password--
-    blob image
-    Varchar(11) taxID - Primary key
-    int fakeDatas
+// állás kereső cv-je és szűrhető adatai
+job_seeker
+    Profil.id // primary key?
+    qualification.id_qual
+    blob cv
+    VARCHAR location
+    int payment
+    bool driving_license
 
-Professions
-    int id - Auto_Inc - Primary
-    Varchar(40) name
-    int fakeVote
-
+// képesítések foka és típusa
+qualification
+    id_qual primary key
+    VARCHAR degree
+    VARCHAR type
 
 -- kapcsolatok
+// állás kereső és a képesítés kapcsolata
+job_qualification
+    job_seeker.id & qualification.id_qual Primary key
 
-AdvertisementFromPeople
-    int id (Professions.id && People.id) (sok-sok), Auto_Inc, Primary
-    int value
-    bool mode (true:minvalue | false:~value)
-    Text requirement
-
-AdvertisementFromFactory
-    int id (Professions.id && Factory.id) (sok-sok), Auto_Inc, Primary
-    int value
-    bool mode (true:maxvalue | false:~value)
+// cégek által kitett hirdetések
+AdvertisementFromCompany
+    Profil.id, Auto_Inc, Primary //(sok-sok)
+    int paying
+    bool mode // true: paying - max; false: ~paying
     Text requirement

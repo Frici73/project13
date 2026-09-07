@@ -1,31 +1,22 @@
-table {
-    text-align: center;
-    margin: auto;
-    margin-top: 10px !important;
-    border: #5566C8 2px solid;
-}
-
-th {
-    width: 50%;
-    margin: 0 auto;
-}
-
-td {
-    margin: 0 auto;
-    width: 50%;
-}
-
 .active {
     color: whitesmoke !important;
     background-color: #5566C8 !important;
 }
 
-input {
+td {
+    width: 50% !important;
+}
+
+input, span {
     width: 100%;
-    padding: 5px;
+    padding: 5px !important;
     box-sizing: border-box;
     border: #5566C8 1px solid;
     border-radius: 5px;
+}
+
+span {
+    display: block;
 }
 
 #reg:hover, #log:hover {

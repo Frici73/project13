@@ -1,0 +1,22 @@
+td {
+    width: 33% !important;
+    border: #5566C8 2px solid;
+    border-radius: 10px;
+}
+
+td input {
+    width: 90% !important;
+    border: 0px;
+    outline: none;
+}
+
+/*Nyilak törlése az input:number-ből*/
+input[type="number"] { 
+    -moz-appearance: textfield;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+

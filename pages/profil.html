@@ -10,29 +10,33 @@
     <script src="../js/basic.js"></script>
     <table>
         <tr>
+            <td></td>
+            <td>Adatok</td>
+            <td>Publikus</td>
+        </tr>
+        <tr>
             <td>e-mail</td>
             <td><input type="email"></td>
-            <td>Jelenítse meg: <input type="checkbox"></td>
+            <td class="check-cell"><input type="checkbox"><span>&#10006;</span></td>
         </tr>
         <tr>
             <td>telefonszám</td>
             <td><input type="number"></td>
-            <td>Jelenítse meg: <input type="checkbox"></td>
+            <td class="check-cell"><input type="checkbox"><span>&#10006;</span></td>
         </tr>
         <tr>
             <td>felhasználónév</td>
             <td><input type="text"></input></td>
-            <td>Jelenítse meg: <input type="checkbox"></td>
+            <td class="check-cell"><input type="checkbox"><span>&#10006;</span></td>
         </tr>
         <tr>
             <td>jelszó</td>
-            <td><input type="password"></td>
-            <td>Jelenítse meg: <input type="checkbox"></td>
+            <td colspan="2"><input type="password"></td>
         </tr>
         <tr>
             <td>profilkép</td>
-            <td><span id="fileSelector">Nincs fájl kiválasztva <input type="file" id="profileImage"></span></td>
-            <td>Jelenítse meg: <input type="checkbox"></td>
+            <td><input type="file" id="profileImage"><span id="fileSelector">Nincs fájl kiválasztva</span></td>
+            <td class="check-cell"><input type="checkbox"><span>&#10006;</span></td>
         </tr>
     </table>
     <script src="../js/profil.js"></script>

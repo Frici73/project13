@@ -7,30 +7,40 @@
 }
 
 body {
-    min-width: 20%;
+    min-width: max(300px, 30%);
 }
 
 header {
     font-size: 2em;
     font-weight: bold;
     border: #5566C8 3px solid;
+    box-sizing: border-box;
 }
 
 menu {
     border: #5566C8 2px solid;
     margin-top: 0.5%;
     flex-direction: row;
-    display: flexbox;
 }
 
-menu li{
-    display: inline-block;
+menu div {
+    text-align: right;
+    display: inline;
+    box-sizing: border-box;
+    border: 0px solid #5566C8;
+    border-left: 2px solid #5566C8;
+}
+
+menu li, menu div li{
+    display: inline;
+    font-size: 1.3em;
 }
 
 table {
     margin-top: 10px !important;
     border: #5566C8 2px solid;
     width: 50%;
+    box-sizing: border-box;
 }
 
 td {

@@ -26,6 +26,8 @@ document.body.innerHTML += `
         <li><a href="${points}/index.html">Főoldal</a></li>
         <li><a href="${points}/pages/profil.html">Profil</a></li>
         <li><a href="${points}/pages/stat.html">Statisztikák</a></li>
-        <li><a href="${points}/pages/register.html">Regisztráció</a></li>
-        <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
+        <div>
+            <li><a href="${points}/pages/register.html">Regisztráció</a></li>
+            <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
+        </div>
     </menu>`

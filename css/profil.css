@@ -2,12 +2,15 @@ td {
     width: 33% !important;
     border: #5566C8 2px solid;
     border-radius: 10px;
+    box-sizing: border-box;
+    font-size: 1.3em;
 }
 
 td input {
-    width: 90% !important;
+    width: 100% !important;
     border: 0px;
     outline: none;
+    box-sizing: border-box;
 }
 
 /*Nyilak törlése az input:number-ből*/
@@ -20,3 +23,13 @@ input::-webkit-inner-spin-button {
   margin: 0;
 }
 
+.check-cell input[type="checkbox"] {
+    display: none;
+}
+
+.check-cell input[type="checkbox"]:checked + span {
+    color: green !important;
+}
+.check-cell input[type="checkbox"]:not(:checked) + span {
+    color: red !important;
+}

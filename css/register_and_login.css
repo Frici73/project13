@@ -5,6 +5,7 @@
 
 td {
     width: 50% !important;
+    box-sizing: border-box;
 }
 
 input, span {
@@ -23,4 +24,12 @@ span {
     background-color: #5566C8 !important;
     color: whitesmoke !important;
     cursor: pointer;
+}
+
+th input {
+    font-size: 0.9em;
+}
+
+td input, td span {
+    font-size: 1em;
 }

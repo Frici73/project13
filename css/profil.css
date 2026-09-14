@@ -3,7 +3,6 @@ td {
     border: #5566C8 2px solid;
     border-radius: 10px;
     box-sizing: border-box;
-    font-size: 1.3em;
 }
 
 td input {
@@ -14,22 +13,29 @@ td input {
 }
 
 /*Nyilak törlése az input:number-ből*/
-input[type="number"] { 
+input[type="number"] {
     -moz-appearance: textfield;
 }
+
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
+    -webkit-appearance: none;
+    margin: 0;
 }
 
 .check-cell input[type="checkbox"] {
     display: none;
 }
 
-.check-cell input[type="checkbox"]:checked + span {
+.check-cell span {
+    cursor: pointer;
+    user-select: none;
+}
+
+.check-cell input[type="checkbox"]:checked+span {
     color: green !important;
 }
-.check-cell input[type="checkbox"]:not(:checked) + span {
+
+.check-cell input[type="checkbox"]:not(:checked)+span {
     color: red !important;
 }

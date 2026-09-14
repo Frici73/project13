@@ -4,10 +4,11 @@
     background-color: whitesmoke;
     color: #5566C8;
     text-align: center;
+    font-size: 1.1em;
 }
 
 body {
-    min-width: max(300px, 30%);
+    min-width: max(750px, 50%);
 }
 
 header {
@@ -23,23 +24,30 @@ menu {
     flex-direction: row;
 }
 
-menu div {
-    text-align: right;
-    display: inline;
-    box-sizing: border-box;
-    border: 0px solid #5566C8;
-    border-left: 2px solid #5566C8;
+menu li {
+    display: inline-block;
+    font-size: 1.3em;
 }
 
-menu li, menu div li{
-    display: inline;
-    font-size: 1.3em;
+.lileft {
+    float: right;
+    border: whitesmoke 1px solid;
+}
+
+.lileft,
+.lileft a {
+    color: whitesmoke;
+    background: #5566C8;
+}
+
+a {
+    text-decoration: underline 1px;
 }
 
 table {
     margin-top: 10px !important;
     border: #5566C8 2px solid;
-    width: 50%;
+    width: 100%;
     box-sizing: border-box;
 }
 
@@ -47,7 +55,8 @@ td {
     width: 50%;
 }
 
-input::file-selector-button { /*"Tallózás" gomb elrejtése*/
+input::file-selector-button {
+    /*"Tallózás" gomb elrejtése*/
     display: none;
 }
 
@@ -55,7 +64,8 @@ input[type="file"] {
     display: none;
 }
 
-input[type="password"]::-ms-reveal, /*A jelszó megjelenítő szem elrejtése*/
+input[type="password"]::-ms-reveal,
+/*A jelszó megjelenítő szem elrejtése*/
 input[type="password"]::-ms-clear {
     display: none;
 }

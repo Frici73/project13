@@ -4,15 +4,23 @@
     background-color: whitesmoke;
     color: #5566C8;
     text-align: center;
-    font-size: 1.1em;
+    font-size: 1.1rem;
 }
 
 body {
     min-width: max(750px, 50%);
 }
 
+h1 {
+    font-size: 2.3rem;
+}
+
+h3 {
+    font-size: 1.8rem;
+}
+
 header {
-    font-size: 2em;
+    font-size: 1.2rem;
     font-weight: bold;
     border: #5566C8 3px solid;
     box-sizing: border-box;
@@ -26,7 +34,7 @@ menu {
 
 menu li {
     display: inline-block;
-    font-size: 1.3em;
+    font-size: 1.3rem;
 }
 
 .lileft {

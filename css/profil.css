@@ -10,6 +10,7 @@ td input {
     border: 0px;
     outline: none;
     box-sizing: border-box;
+    height: fit-content;
 }
 
 /*Nyilak törlése az input:number-ből*/

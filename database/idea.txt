@@ -1,39 +1,52 @@
 -- adattáblák
 
-// személy vagy cég mint felhasználó
-Profil
-    int id Auto_Inc - Primary
-    Varchar(30) email
-    Varchar(40) username
-    Varchar(255) --password--
-    blob image
-    int fakeDatas
-    Varchar(11) taxID
-    teloszam
-
-// állás kereső cv-je és szűrhető adatai
-job_seeker
-    Profil.id // primary key?
-    qualification.id_qual
-    blob cv
-    VARCHAR location
-    int payment
-    bool driving_license
+// személy mint felhasználó
+ProfilPerson
+    int personid Auto_Inc - Primary key
+    Varchar(30) p_email
+    Varchar(40) p_username
+    Varchar(255) p_password // titkosítani kell
+	VARCHAR(56) p_country
+	VARCHAR(200) p_location // község, utca, házszám
+	int p_fakeDatas
+	blob p_imageprofil
+	bool driving_license
+	int p_phonenumber
+	int wanted_salary // bérigény
 
 // képesítések foka és típusa
-qualification
-    id_qual primary key
-    VARCHAR degree
-    VARCHAR type
+Qualification
+    qualificationid - Primary key
+    VARCHAR(50) degree
+    VARCHAR(50) type
 
--- kapcsolatok
-// állás kereső és a képesítés kapcsolata
-job_qualification
-    job_seeker.id & qualification.id_qual Primary key
+// cég mint felhasználó
+ProfilCompany
+	int companyid Auto_Inc - Primary key
+    Varchar(30) c_email
+    Varchar(40) c_username
+    Varchar(255) c_password // titkosítani kell
+	VARCHAR(56) c_country
+	int c_fakeDatas
+	int c_phonenumber
+	blob c_imageprofil
+	Varchar(11) taxID
 
 // cégek által kitett hirdetések
 AdvertisementFromCompany
-    Profil.id, Auto_Inc, Primary //(sok-sok)
-    int paying
-    bool mode // true: paying - max; false: ~paying
+    int advertisementid Auto_Inc - Primary key
+	VARCHAR(200) c_location // község, utca, házszám
+    int offered_salary 		// fel ajánlott fizetés
     Text requirement
+	ProfilCompany.companyid - foreign key
+
+-- kapcsolatok
+
+// állás kereső és a képesítés kapcsolata
+JobQualification
+    ProfilPerson.personid & Qualification.qualificationid - Primary key
+
+// jelentkezés a hirdetésre
+Applying
+	ProfilPerson.personid & AdvertisementFromCompany.advertisementid - Primary key
+    blob cv

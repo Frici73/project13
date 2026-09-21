@@ -11,3 +11,5 @@ Hamis hirdetés és/vagy felhasználó jelentése.
 Hirdetés törlése (ha betöltötték vagy már nincs rá szükség).  
 A cégek is kereshetnek személyeket állásaikra.  
 A bejelölheted a hirdetéseket amik érdekelnek.  
+  
+Fejlesztői dokumentáció a "docs" mappában található.

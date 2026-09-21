@@ -23,9 +23,13 @@ document.body.innerHTML += `
         <h3>${document.title.split("-")[1]}</h3>
     </header>
     <menu>
-        <li><a href="${points}/index.html">Főoldal</a></li>
-        <li><a href="${points}/pages/profil.html">Profil</a></li>
-        <li><a href="${points}/pages/stat.html">Statisztikák</a></li>
-        <li class="lileft"><a href="${points}/pages/login.html">Bejelentkezés</a></li>
-        <li class="lileft"><a href="${points}/pages/register.html">Regisztráció</a></li>
+        <div>
+            <li><a href="${points}/index.html">Főoldal</a></li>
+            <li><a href="${points}/pages/profil.html">Profil</a></li>
+            <li><a href="${points}/pages/stat.html">Statisztikák</a></li>
+        </div>
+        <div class="rightMenu">
+            <li><a href="${points}/pages/register.html">Regisztráció</a></li>
+            <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
+        </div>
     </menu>`

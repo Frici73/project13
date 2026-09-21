@@ -8,7 +8,7 @@
 }
 
 body {
-    min-width: max(750px, 50%);
+    min-width: fit-content;
 }
 
 h1 {
@@ -30,22 +30,34 @@ menu {
     border: #5566C8 2px solid;
     margin-top: 0.5%;
     flex-direction: row;
+    display: flex;
 }
 
-menu li {
-    display: inline-block;
+menu div {
+    border: 0 !important;
+    margin: 0;
+    padding: 0;
+}
+
+menu div li {
+    display: inline-flex;
     font-size: 1.3rem;
+    margin-right: auto;
 }
 
-.lileft {
-    float: right;
+.rightMenu {
+    margin-left: auto;
+    text-align: center;
+}
+
+.rightMenu li {
+    background-color: #5566C8 !important;
     border: whitesmoke 1px solid;
 }
 
-.lileft,
-.lileft a {
-    color: whitesmoke;
-    background: #5566C8;
+.rightMenu li a {
+    color: whitesmoke !important;
+    background-color: #5566C8 !important;
 }
 
 a {
@@ -61,11 +73,6 @@ table {
 
 td {
     width: 50%;
-}
-
-input::file-selector-button {
-    /*"Tallózás" gomb elrejtése*/
-    display: none;
 }
 
 input[type="file"] {

@@ -4,19 +4,20 @@
     background-color: whitesmoke;
     color: #5566C8;
     text-align: center;
-    font-size: 1.1rem;
+    font-size: 1.9vw;
+    box-sizing: border-box;
 }
 
 body {
-    min-width: 500px;
+    min-width: fit-content;
 }
 
 h1 {
-    font-size: 2.3rem;
+    font-size: 3.3vw;
 }
 
 h3 {
-    font-size: 1.8rem;
+    font-size: 2.8vw;
 }
 
 menu {
@@ -43,7 +44,6 @@ menu div {
 
 menu div li {
     display: block;
-    font-size: 1.3rem;
 }
 
 .rightMenu li {

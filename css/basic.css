@@ -75,6 +75,10 @@ input[type="file"] {
     display: none;
 }
 
+input::placeholder {
+    color: #5566C8;
+}
+
 input[type="password"]::-ms-reveal,
 /*A jelszó megjelenítő szem elrejtése*/
 input[type="password"]::-ms-clear {

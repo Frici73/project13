@@ -16,7 +16,6 @@ if (!basicCSS) {
 }
 basicCSS.href = `${points}/css/basic.css`
 
-
 document.body.innerHTML += `
     <menu>
         <div>
@@ -29,7 +28,14 @@ document.body.innerHTML += `
             <h3>${document.title.split("-")[1]}</h3>
         </header>
         <div class="rightMenu">
-        <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
+            <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
             <li><a href="${points}/pages/register.html">Regisztráció</a></li>
         </div>
     </menu>`
+
+document.addEventListener("DOMContentLoaded", function () {
+    passwordInputs = document.querySelectorAll(`input[type="password"]`)
+    passwordInputs.forEach(element => {
+        element.placeholder = "Dupla kattintással látható / elrejthető"
+    });
+});

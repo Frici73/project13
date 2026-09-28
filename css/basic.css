@@ -77,6 +77,7 @@ input[type="file"] {
 
 input::placeholder {
     color: #5566C8;
+    opacity: 80%;
 }
 
 input[type="password"]::-ms-reveal,

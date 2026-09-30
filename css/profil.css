@@ -1,5 +1,9 @@
+table {
+    user-select: none;
+}
+
 td {
-    width: 33% !important;
+    
     border: #5566C8 2px solid;
     border-radius: 10px;
     box-sizing: border-box;
@@ -53,4 +57,10 @@ input::-webkit-inner-spin-button {
 
 .check-cell input[type="checkbox"]:not(:checked)+span {
     color: red !important;
+}
+
+.hideData {
+    text-decoration: none !important;
+    cursor: pointer;
+    user-select: none;
 }

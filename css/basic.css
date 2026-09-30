@@ -81,8 +81,20 @@ input::placeholder {
     font-size: 1.7vw;
 }
 
-input[type="password"]::-ms-reveal,
+input[type="password"] {
+    user-select: none !important;
+}
+
+input[type="password"]::content {
+    user-select: none;
+}
+
 /*A jelszó megjelenítő szem elrejtése*/
+input[type="password"]::-ms-reveal,
 input[type="password"]::-ms-clear {
+    display: none;
+}
+
+.hide {
     display: none;
 }

@@ -30,6 +30,7 @@ document.body.innerHTML += `
         <div class="rightMenu">
             <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
             <li><a href="${points}/pages/register.html">Regisztráció</a></li>
+            <li class="hide"><a href="${points}/index.html">Kijelentkezés</a></li>
         </div>
     </menu>`
 

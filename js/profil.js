@@ -28,9 +28,8 @@ for (var input of document.getElementsByTagName("input")) {
         }
     }
 
-document.querySelectorAll(".check-cell span").forEach(span => {
-    span.onclick = () => {
-        const input = span.parentElement.querySelector("input");
+function charEdit(span) {
+    const input = span.parentElement.querySelector("input");
         if (input.checked) {
             span.innerHTML = "&#10006;";
         }
@@ -38,6 +37,9 @@ document.querySelectorAll(".check-cell span").forEach(span => {
             span.innerHTML = "&#10004;";
         }
         input.checked = !input.checked;
-        
-    };
+}
+
+document.querySelectorAll(".check-cell span").forEach(span => {
+    charEdit(span)
+    span.onclick = () => charEdit(span)
 });

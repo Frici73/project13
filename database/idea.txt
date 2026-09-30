@@ -2,51 +2,51 @@
 
 // személy mint felhasználó
 ProfilPerson
-    int personid Auto_Inc - Primary key
+    int person_id Auto_Inc - Primary key
     Varchar(30) p_email
     Varchar(40) p_username
     Varchar(255) p_password // titkosítani kell
 	VARCHAR(56) p_country
-	VARCHAR(200) p_location // község, utca, házszám
-	int p_fakeDatas
-	blob p_imageprofil
+	VARCHAR(200) p_location // község
+	int p_fake_datas
+	blob p_image_profil
 	bool driving_license
-	int p_phonenumber
+	int p_phone_number
 	int wanted_salary // bérigény
 
 // képesítések foka és típusa
 Qualification
-    qualificationid - Primary key
+    qualification_id - Primary key
     VARCHAR(50) degree
     VARCHAR(50) type
 
 // cég mint felhasználó
 ProfilCompany
-	int companyid Auto_Inc - Primary key
+	int company_id Auto_Inc - Primary key
     Varchar(30) c_email
     Varchar(40) c_username
     Varchar(255) c_password // titkosítani kell
 	VARCHAR(56) c_country
-	int c_fakeDatas
-	int c_phonenumber
-	blob c_imageprofil
-	Varchar(11) taxID
+	int c_fake_datas
+	int c_phone_number
+	blob c_image_profil
+	Varchar(11) tax_id
 
 // cégek által kitett hirdetések
 AdvertisementFromCompany
-    int advertisementid Auto_Inc - Primary key
+    int advertisement_id Auto_Inc - Primary key
 	VARCHAR(200) c_location // község, utca, házszám
     int offered_salary 		// fel ajánlott fizetés
     Text requirement
-	ProfilCompany.companyid - foreign key
+	(ProfilCompany) companyid - foreign key
 
 -- kapcsolatok
 
 // állás kereső és a képesítés kapcsolata
-JobQualification
-    ProfilPerson.personid & Qualification.qualificationid - Primary key
+HasQualification
+    ProfilPerson.person_id & Qualification.qualification_id - Primary key
 
 // jelentkezés a hirdetésre
 Applying
-	ProfilPerson.personid & AdvertisementFromCompany.advertisementid - Primary key
+	ProfilPerson.person_id & AdvertisementFromCompany.advertisement_id - Primary key
     blob cv

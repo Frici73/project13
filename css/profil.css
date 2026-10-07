@@ -1,9 +1,9 @@
+/*Minden kijelölhetetlen lesz a jelszót leszámítva*/
 table {
     user-select: none;
 }
 
 td {
-    
     border: #5566C8 2px solid;
     border-radius: 10px;
     box-sizing: border-box;
@@ -32,30 +32,33 @@ td span {
 }
 
 /*Nyilak törlése az input:number-ből*/
-input[type="number"] {
+
+input[type="number"] { /*Firefoxban*/
+    appearance: textfield;
     -moz-appearance: textfield;
 }
 
 input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
+input::-webkit-inner-spin-button { /*Edge és chromeban*/
     -webkit-appearance: none;
     margin: 0;
 }
+
 
 .check-cell input[type="checkbox"] {
     display: none;
 }
 
-.check-cell span {
+.check-cell span { /*Jogosítvány átálításánál az egér kinézete + nem kijelölhető az emoji*/
     cursor: pointer;
     user-select: none;
 }
 
-.check-cell input[type="checkbox"]:checked+span {
+.check-cell input[type="checkbox"]:checked+span { /*A pipa zöld*/
     color: green !important;
 }
 
-.check-cell input[type="checkbox"]:not(:checked)+span {
+.check-cell input[type="checkbox"]:not(:checked)+span { /*Az x piros*/
     color: red !important;
 }
 

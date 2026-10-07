@@ -71,6 +71,7 @@ td {
     width: 50%;
 }
 
+/*AZ eredeti fájl választó gomb elrejtése, mivel az nem színesíthető*/
 input[type="file"] {
     display: none;
 }
@@ -79,14 +80,6 @@ input::placeholder {
     color: #5566C8;
     opacity: 80%;
     font-size: 1.7vw;
-}
-
-input[type="password"] {
-    user-select: none !important;
-}
-
-input[type="password"]::content {
-    user-select: none;
 }
 
 /*A jelszó megjelenítő szem elrejtése*/

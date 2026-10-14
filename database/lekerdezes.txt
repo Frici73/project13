@@ -1,0 +1,28 @@
+Group 1 // alap adatok
+SELECT p_email, p_username, p_country, driving_license, p_phone_number
+FROM ProfilPesron;
+
+Group 2 // cég alap adatai
+SELECT c_email, c_username, c_country, c_phone_number
+FROM ProfileCompany;
+
+Group 3 végzettség adatai
+SELECT type, degree
+FROM Qualification;
+
+Group 4 // statisztikai adatok (hol mennyiért dolgoznál)
+SELECT wanted_salary, p_country, p_location
+FROM ProfilPerson;
+
+Group 5 // állás hirdetés adatai
+
+megjegyzés: offered_job-ot be kell tenni a advertisement... táblázatba (mint a munka megnevezése)
+
+SELECT offered_job, offered_salary, requirement, c_location
+FROM AdvertisementFromCompany;
+
+Group 6 // Állásra jelentkezés adatai
+SELECT a.cv, p.p_username, p.driving_license, p.p_email
+FROM Applying as a
+INNER JOIN ProfilPerson as p
+ON p.person_id = a.person_id;

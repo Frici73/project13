@@ -19,7 +19,7 @@ FROM ProfilPerson;
 
 Group 5 // állás hirdetés adatai
 
-megjegyzés: offered_job-ot be kell tenni a advertisement... táblázatba (mint a munka megnevezése)
+megjegyzés: offered_job-ot be kell tenni a modellekbe
 
 SELECT offered_job, offered_salary, requirement, c_location
 FROM AdvertisementFromCompany;

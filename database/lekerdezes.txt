@@ -6,9 +6,12 @@ Group 2 // cég alap adatai
 SELECT c_email, c_username, c_country, c_phone_number
 FROM ProfileCompany;
 
-Group 3 végzettség adatai
-SELECT type, degree
-FROM Qualification;
+Group 3 végzettség adatai (személy szerint)
+SELECT p.p_username, q.type, q.degree
+FROM Qualification as q
+INNER JOIN PersonProfil as p
+ON p.person_id = q.person_id
+GROUP BY p.person_id;
 
 Group 4 // statisztikai adatok (hol mennyiért dolgoznál)
 SELECT wanted_salary, p_country, p_location

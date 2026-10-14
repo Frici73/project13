@@ -37,6 +37,7 @@ AdvertisementFromCompany
     int advertisement_id Auto_Inc - Primary key
 	VARCHAR(200) c_location // község, utca, házszám
     int offered_salary 		// fel ajánlott fizetés
+	VARCHAR(100) offered_job // a munka neve
     Text requirement
 	(ProfilCompany) companyid - foreign key
 

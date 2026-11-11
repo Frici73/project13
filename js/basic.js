@@ -22,6 +22,7 @@ document.body.innerHTML += `
             <li><a href="${points}/index.html">Főoldal</a></li>
             <li><a href="${points}/pages/profil.html">Profil</a></li>
             <li><a href="${points}/pages/stat.html">Statisztikák</a></li>
+            <li id="colormode">Sötét mód</li>
         </div>
         <header id="header">
             <h1>Working Souls</h1>
@@ -31,12 +32,24 @@ document.body.innerHTML += `
             <li><a href="${points}/pages/login.html">Bejelentkezés</a></li>
             <li><a href="${points}/pages/register.html">Regisztráció</a></li>
             <li class="hide"><a href="${points}/index.html">Kijelentkezés</a></li>
+            <li><a href="${points}/pages/searcherASC.html">Keresés</a></li>
         </div>
     </menu>`
+
+function recolor(isDark) {
+    document.body.style.setProperty("--bg", isDark?"gray":"whitesmoke")
+}
 
 document.addEventListener("DOMContentLoaded", function () {
     passwordInputs = document.querySelectorAll(`input[type="password"]`)
     passwordInputs.forEach(element => {
         element.placeholder = "Dupla kattintással látható / elrejthető"
     });
+
+    const colormode = document.getElementById("colormode")
+    colormode.addEventListener("click", ()=>{
+        let isDark = colormode.innerText == "Sötét mód"
+        colormode.innerText = isDark ? "Világos mód":"Sötét mód"
+        recolor(isDark)
+    })
 });

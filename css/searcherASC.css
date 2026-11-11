@@ -1,0 +1,16 @@
+input {
+    border: #5566C8 1px solid;
+    width: 23%;
+}
+
+#talalatok {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.talalat {
+    border: #5566C8 1px solid;
+    text-decoration: underline 1px #5566C8;
+    width: 30%;
+}

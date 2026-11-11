@@ -1,0 +1,14 @@
+* {
+    --blue: #5566C8;
+    --bg: whitesmoke;
+}
+
+input {
+    border: var(--blue) 1px solid;
+    width: 30%;
+}
+
+.talalat {
+    border: var(--blue) 1px solid;
+    text-decoration: underline 1px var(--blue);
+}

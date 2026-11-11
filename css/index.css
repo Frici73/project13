@@ -3,6 +3,6 @@ div h1, div h3, div p {
 }
 
 div {
-    border: #5566C8 2px solid;
+    border: var(--blue) 2px solid;
     margin-top: 20px;
 }

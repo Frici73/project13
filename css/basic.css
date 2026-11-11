@@ -1,8 +1,10 @@
 * {
+    --blue: #5566C8;
+    --bg: whitesmoke;
     padding: 10px;
     margin: 0 auto;
-    background-color: whitesmoke;
-    color: #5566C8;
+    background-color: var(--bg);
+    color: var(--blue);
     text-align: center;
     font-size: 1.9vw;
     box-sizing: border-box;
@@ -21,10 +23,10 @@ h3 {
 }
 
 menu {
-    border: #5566C8 2px solid;
+    border: var(--blue) 2px solid;
     margin: 0.5% auto;
     display: flex;
-    background-color: whitesmoke;
+    background-color: var(--bg);
     position: sticky;
     top: 0;
     left: 0;
@@ -40,6 +42,7 @@ menu div {
     border: 0 !important;
     margin: 0;
     padding: 0;
+    user-select: none;
 }
 
 menu div li {
@@ -47,13 +50,13 @@ menu div li {
 }
 
 .rightMenu li {
-    background-color: #5566C8 !important;
-    border: whitesmoke 1px solid;
+    background-color: var(--blue) !important;
+    border: var(--bg) 1px solid;
 }
 
 .rightMenu li a {
-    color: whitesmoke !important;
-    background-color: #5566C8 !important;
+    color: var(--bg) !important;
+    background-color: var(--blue) !important;
 }
 
 a {
@@ -62,7 +65,7 @@ a {
 
 table {
     margin-top: 10px !important;
-    border: #5566C8 2px solid;
+    border: var(--blue) 2px solid;
     width: 100%;
     box-sizing: border-box;
 }
@@ -77,7 +80,7 @@ input[type="file"] {
 }
 
 input::placeholder {
-    color: #5566C8;
+    color: var(--blue);
     opacity: 80%;
     font-size: 1.7vw;
 }

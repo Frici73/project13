@@ -1,10 +1,15 @@
+*{
+    --blue: #5566C8;
+    --bg: whitesmoke;
+}
+
 /*Minden kijelölhetetlen lesz a jelszót leszámítva*/
 table {
     user-select: none;
 }
 
 td {
-    border: #5566C8 2px solid;
+    border: var(--blue) 2px solid;
     border-radius: 10px;
     box-sizing: border-box;
 }

@@ -1,6 +1,11 @@
+*{
+    --blue: #5566C8;
+    --bg: whitesmoke;
+}
+
 .active {
-    color: whitesmoke !important;
-    background-color: #5566C8 !important;
+    color: var(--bg) !important;
+    background-color: var(--blue) !important;
 }
 
 td {
@@ -12,7 +17,7 @@ input, span {
     width: 100%;
     padding: 5px !important;
     box-sizing: border-box;
-    border: #5566C8 1px solid;
+    border: var(--blue) 1px solid;
     border-radius: 5px;
 
 }
@@ -22,8 +27,8 @@ span {
 }
 
 #reg:hover, #log:hover {
-    background-color: #5566C8 !important;
-    color: whitesmoke !important;
+    background-color: var(--blue) !important;
+    color: var(--bg) !important;
     cursor: pointer;
 }
 

@@ -36,10 +36,6 @@ document.body.innerHTML += `
         </div>
     </menu>`
 
-function recolor(isDark) {
-    document.body.style.setProperty("--bg", isDark?"gray":"whitesmoke")
-}
-
 document.addEventListener("DOMContentLoaded", function () {
     passwordInputs = document.querySelectorAll(`input[type="password"]`)
     passwordInputs.forEach(element => {
@@ -50,6 +46,14 @@ document.addEventListener("DOMContentLoaded", function () {
     colormode.addEventListener("click", ()=>{
         let isDark = colormode.innerText == "Sötét mód"
         colormode.innerText = isDark ? "Világos mód":"Sötét mód"
-        recolor(isDark)
+        const style = document.querySelector(':root').style
+        if (isDark) {
+            style.setProperty("--bg", "#3e3e3e")
+            style.setProperty("--blue", "#3a88ef")
+        }
+        else {
+            style.setProperty("--bg", "#d0d0d0")
+            style.setProperty("--blue", "#5566C8")
+        }
     })
 });

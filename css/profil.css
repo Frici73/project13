@@ -1,8 +1,3 @@
-*{
-    --blue: #5566C8;
-    --bg: whitesmoke;
-}
-
 /*Minden kijelölhetetlen lesz a jelszót leszámítva*/
 table {
     user-select: none;

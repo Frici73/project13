@@ -1,6 +1,9 @@
-* {
+:root {
     --blue: #5566C8;
-    --bg: whitesmoke;
+    --bg: #d0d0d0;
+}
+
+* { 
     padding: 10px;
     margin: 0 auto;
     background-color: var(--bg);

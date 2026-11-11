@@ -1,8 +1,3 @@
-*{
-    --blue: #5566C8;
-    --bg: whitesmoke;
-}
-
 .active {
     color: var(--bg) !important;
     background-color: var(--blue) !important;

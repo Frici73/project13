@@ -1,5 +1,5 @@
 input {
-    border: #5566C8 1px solid;
+    border: var(--blue) 1px solid;
     width: 23%;
 }
 
@@ -10,7 +10,7 @@ input {
 }
 
 .talalat {
-    border: #5566C8 1px solid;
-    text-decoration: underline 1px #5566C8;
+    border: var(--blue) 1px solid;
+    text-decoration: underline 1px var(--blue);
     width: 30%;
 }

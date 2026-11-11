@@ -36,24 +36,30 @@ document.body.innerHTML += `
         </div>
     </menu>`
 
+function coloring(isDark) {
+    const style = document.querySelector(':root').style
+    if (isDark == true || isDark == "true") {
+        colormode.innerText = "Világos mód"
+        style.setProperty("--bg", "#3e3e3e")
+        style.setProperty("--blue", "#3a88ef")
+    }
+    else {
+        colormode.innerText = "Sötét mód"
+        style.setProperty("--bg", "#d0d0d0")
+        style.setProperty("--blue", "#5566C8")
+    }
+}
+
+const colormode = document.getElementById("colormode")
 document.addEventListener("DOMContentLoaded", function () {
     passwordInputs = document.querySelectorAll(`input[type="password"]`)
     passwordInputs.forEach(element => {
         element.placeholder = "Dupla kattintással látható / elrejthető"
     });
-
-    const colormode = document.getElementById("colormode")
+    coloring(localStorage.getItem("DarkMode"))
     colormode.addEventListener("click", ()=>{
         let isDark = colormode.innerText == "Sötét mód"
-        colormode.innerText = isDark ? "Világos mód":"Sötét mód"
-        const style = document.querySelector(':root').style
-        if (isDark) {
-            style.setProperty("--bg", "#3e3e3e")
-            style.setProperty("--blue", "#3a88ef")
-        }
-        else {
-            style.setProperty("--bg", "#d0d0d0")
-            style.setProperty("--blue", "#5566C8")
-        }
+        localStorage.setItem("DarkMode", isDark)
+        coloring(isDark)
     })
 });

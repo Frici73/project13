@@ -1,53 +1,84 @@
--- adattáblák
+-- Adattáblák
 
-// személy mint felhasználó
+// Személy mint felhasználó
 ProfilPerson
-    int person_id Auto_Inc - Primary key
-    Varchar(30) p_email
-    Varchar(40) p_username
-    Varchar(255) p_password // titkosítani kell
-	VARCHAR(56) p_country
-	VARCHAR(200) p_location // község
-	int p_fake_datas
-	blob p_image_profil
-	bool driving_license
-	int p_phone_number
-	int wanted_salary // bérigény
+    INT person_id Auto_Inc - Primary key
+    VARCHAR(100) p_email - NOT NULL, UNIQUE
+    VARCHAR(40) p_username - NOT NULL
+    VARCHAR(255) p_password - NOT NULL // hash-elni kell
+    VARCHAR(56) p_country - NOT NULL
+    VARCHAR(200) p_location - NOT NULL // község
+    INT p_fake_datas - NOT NULL, DEFAULT 0, CHECK >= 0
+    MEDIUMBLOB p_image_profil
+    BOOLEAN driving_license - NOT NULL, DEFAULT FALSE
+    VARCHAR(20) p_phone_number - NOT NULL, UNIQUE
+    INT wanted_salary - NOT NULL, CHECK >= 0
+    // Bérigény, havi bruttó Ft
 
-// képesítések foka és típusa
+// Képesítések foka és típusa
 Qualification
-    qualification_id - Primary key
-    VARCHAR(50) degree
-    VARCHAR(50) type
+    INT qualification_id Auto_Inc - Primary key
+    VARCHAR(50) degree - NOT NULL
+    VARCHAR(50) type - NOT NULL
+    UNIQUE (degree, type)
 
-// cég mint felhasználó
+// Cég mint felhasználó
 ProfilCompany
-	int company_id Auto_Inc - Primary key
-    Varchar(30) c_email
-    Varchar(40) c_username
-    Varchar(255) c_password // titkosítani kell
-	VARCHAR(56) c_country
-	int c_fake_datas
-	int c_phone_number
-	blob c_image_profil
-	Varchar(11) tax_id
+    INT company_id Auto_Inc - Primary key
+    VARCHAR(100) c_email - NOT NULL, UNIQUE
+    VARCHAR(40) c_username - NOT NULL
+    VARCHAR(255) c_password - NOT NULL // hash-elni kell
+    VARCHAR(56) c_country - NOT NULL
+    INT c_fake_datas - NOT NULL, DEFAULT 0, CHECK >= 0
+    VARCHAR(20) c_phone_number - NOT NULL, UNIQUE
+    MEDIUMBLOB c_image_profil
+    VARCHAR(11) tax_id - NOT NULL, UNIQUE
 
-// cégek által kitett hirdetések
+// Cégek által közzétett hirdetések
 AdvertisementFromCompany
-    int advertisement_id Auto_Inc - Primary key
-	VARCHAR(200) c_location // község, utca, házszám
-    int offered_salary 		// fel ajánlott fizetés
-	VARCHAR(100) offered_job // a munka neve
-    Text requirement
-	(ProfilCompany) companyid - foreign key
+    INT advertisement_id Auto_Inc - Primary key
+    VARCHAR(200) c_location - NOT NULL // község, utca, házszám
+    INT offered_salary - NOT NULL, CHECK >= 0
+    // Felajánlott fizetés, havi bruttó Ft
+    VARCHAR(100) offered_job - NOT NULL // munka neve
+    TEXT requirement - NOT NULL
+    INT company_id - NOT NULL, Foreign key
 
--- kapcsolatok
+    Foreign key:
+        company_id -> ProfilCompany.company_id
+        ON DELETE CASCADE
 
-// állás kereső és a képesítés kapcsolata
+-- Kapcsolatok
+
+// Álláskereső és képesítés kapcsolata (N:M)
 HasQualification
-    ProfilPerson.person_id & Qualification.qualification_id - Primary key
+    INT person_id - NOT NULL, Foreign key
+    INT qualification_id - NOT NULL, Foreign key
 
-// jelentkezés a hirdetésre
+    Összetett Primary key:
+        person_id & qualification_id
+
+    Foreign keys:
+        person_id -> ProfilPerson.person_id
+        qualification_id -> Qualification.qualification_id
+
+    ON DELETE CASCADE mindkét idegen kulcsnál
+
+// Jelentkezés az álláshirdetésre (N:M)
 Applying
-	ProfilPerson.person_id & AdvertisementFromCompany.advertisement_id - Primary key
-    blob cv
+    INT person_id - NOT NULL, Foreign key
+    INT advertisement_id - NOT NULL, Foreign key
+    MEDIUMBLOB cv // önéletrajz
+
+    Összetett Primary key:
+        person_id & advertisement_id
+
+    Foreign keys:
+        person_id -> ProfilPerson.person_id
+        advertisement_id -> AdvertisementFromCompany.advertisement_id
+
+    ON DELETE CASCADE mindkét idegen kulcsnál
+
+// Adatbázis: workingsouls
+// Karakterkészlet: utf8mb4, rendezés: utf8mb4_hungarian_ci
+// Minden tábla: InnoDB

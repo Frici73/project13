@@ -1,0 +1,263 @@
+CREATE DATABASE IF NOT EXISTS workingsouls DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_hungarian_ci;
+USE workingsouls;
+
+CREATE TABLE ProfilPerson (
+    person_id INT AUTO_INCREMENT PRIMARY KEY,
+    p_email VARCHAR(100) NOT NULL UNIQUE,
+    p_username VARCHAR(40) NOT NULL,
+    p_password VARCHAR(255) NOT NULL,
+    p_country VARCHAR(56) NOT NULL,
+    p_location VARCHAR(200) NOT NULL,
+    p_fake_datas INT NOT NULL DEFAULT 0 CHECK (p_fake_datas >= 0),
+    p_image_profil MEDIUMBLOB,
+    driving_license BOOLEAN NOT NULL DEFAULT FALSE,
+    p_phone_number VARCHAR(20) NOT NULL UNIQUE,
+    wanted_salary INT NOT NULL CHECK (wanted_salary >= 0)
+) ENGINE=InnoDB;
+
+CREATE TABLE Qualification (
+    qualification_id INT AUTO_INCREMENT PRIMARY KEY,
+    degree VARCHAR(50) NOT NULL,
+    type VARCHAR(50) NOT NULL,
+    UNIQUE (degree, type)
+) ENGINE=InnoDB;
+
+CREATE TABLE ProfilCompany (
+    company_id INT AUTO_INCREMENT PRIMARY KEY,
+    c_email VARCHAR(100) NOT NULL UNIQUE,
+    c_username VARCHAR(40) NOT NULL,
+    c_password VARCHAR(255) NOT NULL,
+    c_country VARCHAR(56) NOT NULL,
+    c_fake_datas INT NOT NULL DEFAULT 0 CHECK (c_fake_datas >= 0),
+    c_phone_number VARCHAR(20) NOT NULL UNIQUE,
+    c_image_profil MEDIUMBLOB,
+    tax_id VARCHAR(11) NOT NULL UNIQUE
+) ENGINE=InnoDB;
+
+CREATE TABLE AdvertisementFromCompany (
+    advertisement_id INT AUTO_INCREMENT PRIMARY KEY,
+    c_location VARCHAR(200) NOT NULL,
+    offered_salary INT NOT NULL CHECK (offered_salary >= 0),
+    offered_job VARCHAR(100) NOT NULL,
+    requirement TEXT NOT NULL,
+    company_id INT NOT NULL,
+    FOREIGN KEY (company_id) REFERENCES ProfilCompany(company_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE HasQualification (
+    person_id INT NOT NULL,
+    qualification_id INT NOT NULL,
+    PRIMARY KEY (person_id, qualification_id),
+    FOREIGN KEY (person_id) REFERENCES ProfilPerson(person_id) ON DELETE CASCADE,
+    FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE Applying (
+    person_id INT NOT NULL,
+    advertisement_id INT NOT NULL,
+    cv MEDIUMBLOB,
+    PRIMARY KEY (person_id, advertisement_id),
+    FOREIGN KEY (person_id) REFERENCES ProfilPerson(person_id) ON DELETE CASCADE,
+    FOREIGN KEY (advertisement_id) REFERENCES AdvertisementFromCompany(advertisement_id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+-- Tesztadatok: minden név, elérhetőség és adószám fiktív.
+-- A fizetések havi bruttó forintban értendők.
+-- A jelszómezők szándékosan nem használható helyőrzők.
+-- A backend feladata a valódi jelszóhash előállítása (pl. Argon2id vagy bcrypt).
+START TRANSACTION;
+
+INSERT INTO ProfilPerson (person_id, p_email, p_username, p_password, p_country, p_location, p_fake_datas, p_image_profil, driving_license, p_phone_number, wanted_salary) VALUES
+    (1, 'person1@example.com', 'Kovács Anna', '!TEST_DISABLED!', 'Magyarország', 'Székesfehérvár', 0, NULL, 1, '+36000000001', 750000),
+    (2, 'person2@example.com', 'Nagy Bence', '!TEST_DISABLED!', 'Magyarország', 'Budapest', 0, NULL, 1, '+36000000002', 420000),
+    (3, 'person3@example.com', 'Tóth Dóra', '!TEST_DISABLED!', 'Magyarország', 'Velence', 0, NULL, 0, '+36000000003', 360000),
+    (4, 'person4@example.com', 'Szabó Gábor', '!TEST_DISABLED!', 'Magyarország', 'Gárdony', 0, NULL, 1, '+36000000004', 820000),
+    (5, 'person5@example.com', 'Horváth Eszter', '!TEST_DISABLED!', 'Magyarország', 'Veszprém', 0, NULL, 1, '+36000000005', 520000),
+    (6, 'person6@example.com', 'Varga Máté', '!TEST_DISABLED!', 'Magyarország', 'Győr', 0, NULL, 0, '+36000000006', 500000),
+    (7, 'person7@example.com', 'Kiss Lilla', '!TEST_DISABLED!', 'Magyarország', 'Pécs', 0, NULL, 1, '+36000000007', 490000),
+    (8, 'person8@example.com', 'Molnár Ádám', '!TEST_DISABLED!', 'Magyarország', 'Debrecen', 0, NULL, 1, '+36000000008', 430000),
+    (9, 'person9@example.com', 'Farkas Réka', '!TEST_DISABLED!', 'Magyarország', 'Székesfehérvár', 1, NULL, 0, '+36000000009', 820000),
+    (10, 'person10@example.com', 'Balogh Péter', '!TEST_DISABLED!', 'Magyarország', 'Budapest', 0, NULL, 1, '+36000000010', 410000),
+    (11, 'person11@example.com', 'Kovács Nóra', '!TEST_DISABLED!', 'Magyarország', 'Velence', 0, NULL, 1, '+36000000011', 780000),
+    (12, 'person12@example.com', 'Nagy Dávid', '!TEST_DISABLED!', 'Magyarország', 'Gárdony', 0, NULL, 0, '+36000000012', 820000),
+    (13, 'person13@example.com', 'Tóth Zsófia', '!TEST_DISABLED!', 'Magyarország', 'Veszprém', 0, NULL, 1, '+36000000013', 690000),
+    (14, 'person14@example.com', 'Szabó Levente', '!TEST_DISABLED!', 'Magyarország', 'Győr', 0, NULL, 1, '+36000000014', 400000),
+    (15, 'person15@example.com', 'Horváth Júlia', '!TEST_DISABLED!', 'Magyarország', 'Pécs', 0, NULL, 0, '+36000000015', 720000),
+    (16, 'person16@example.com', 'Farkas Anna', '!TEST_DISABLED!', 'Magyarország', 'Debrecen', 0, NULL, 1, '+36000000016', 620000),
+    (17, 'person17@example.com', 'Balogh Bence', '!TEST_DISABLED!', 'Magyarország', 'Székesfehérvár', 0, NULL, 1, '+36000000017', 370000),
+    (18, 'person18@example.com', 'Kovács Dóra', '!TEST_DISABLED!', 'Magyarország', 'Budapest', 0, NULL, 0, '+36000000018', 360000),
+    (19, 'person19@example.com', 'Nagy Gábor', '!TEST_DISABLED!', 'Magyarország', 'Velence', 0, NULL, 1, '+36000000019', 400000),
+    (20, 'person20@example.com', 'Tóth Eszter', '!TEST_DISABLED!', 'Magyarország', 'Gárdony', 0, NULL, 1, '+36000000020', 480000),
+    (21, 'person21@example.com', 'Szabó Máté', '!TEST_DISABLED!', 'Magyarország', 'Veszprém', 0, NULL, 0, '+36000000021', 490000),
+    (22, 'person22@example.com', 'Horváth Lilla', '!TEST_DISABLED!', 'Magyarország', 'Győr', 1, NULL, 1, '+36000000022', 670000),
+    (23, 'person23@example.com', 'Varga Ádám', '!TEST_DISABLED!', 'Magyarország', 'Pécs', 0, NULL, 1, '+36000000023', 730000),
+    (24, 'person24@example.com', 'Kiss Réka', '!TEST_DISABLED!', 'Magyarország', 'Debrecen', 0, NULL, 0, '+36000000024', 360000),
+    (25, 'person25@example.com', 'Molnár Péter', '!TEST_DISABLED!', 'Magyarország', 'Székesfehérvár', 0, NULL, 1, '+36000000025', 700000),
+    (26, 'person26@example.com', 'Farkas Nóra', '!TEST_DISABLED!', 'Magyarország', 'Budapest', 0, NULL, 1, '+36000000026', 470000),
+    (27, 'person27@example.com', 'Balogh Dávid', '!TEST_DISABLED!', 'Magyarország', 'Velence', 0, NULL, 0, '+36000000027', 800000),
+    (28, 'person28@example.com', 'Kovács Zsófia', '!TEST_DISABLED!', 'Magyarország', 'Gárdony', 0, NULL, 1, '+36000000028', 760000),
+    (29, 'person29@example.com', 'Nagy Levente', '!TEST_DISABLED!', 'Magyarország', 'Veszprém', 0, NULL, 1, '+36000000029', 790000),
+    (30, 'person30@example.com', 'Tóth Júlia', '!TEST_DISABLED!', 'Magyarország', 'Győr', 0, NULL, 0, '+36000000030', 690000);
+
+INSERT INTO Qualification (qualification_id, degree, type) VALUES
+    (1, 'Érettségi', 'Általános'),
+    (2, 'Technikus', 'Szoftverfejlesztő és -tesztelő'),
+    (3, 'Technikus', 'Informatikai rendszerüzemeltető'),
+    (4, 'BSc', 'Mérnökinformatikus'),
+    (5, 'BSc', 'Gazdaságinformatikus'),
+    (6, 'MSc', 'Programtervező informatikus'),
+    (7, 'Technikus', 'Pénzügyi-számviteli ügyintéző'),
+    (8, 'BSc', 'Gazdálkodás és menedzsment'),
+    (9, 'Szakképesítés', 'Villanyszerelő'),
+    (10, 'Szakképesítés', 'Logisztikai ügyintéző'),
+    (11, 'B2', 'Angol nyelv'),
+    (12, 'C1', 'Angol nyelv'),
+    (13, 'B2', 'Német nyelv'),
+    (14, 'Technikus', 'Gépésztechnikus'),
+    (15, 'BSc', 'Gépészmérnök');
+
+INSERT INTO ProfilCompany (company_id, c_email, c_username, c_password, c_country, c_fake_datas, c_phone_number, c_image_profil, tax_id) VALUES
+    (1, 'company1@example.com', 'Alfa Teszt IT Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010001', NULL, '00000000001'),
+    (2, 'company2@example.com', 'Duna Teszt Logisztika Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010002', NULL, '00000000002'),
+    (3, 'company3@example.com', 'Fehérvár Teszt Tech Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010003', NULL, '00000000003'),
+    (4, 'company4@example.com', 'Pixel Teszt Studio Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010004', NULL, '00000000004'),
+    (5, 'company5@example.com', 'Pannon Teszt Pénzügy Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010005', NULL, '00000000005'),
+    (6, 'company6@example.com', 'Bakony Teszt Gépipar Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010006', NULL, '00000000006'),
+    (7, 'company7@example.com', 'Nova Teszt Solutions Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010007', NULL, '00000000007'),
+    (8, 'company8@example.com', 'Velence Teszt Szerviz Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010008', NULL, '00000000008'),
+    (9, 'company9@example.com', 'Delta Teszt Digital Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010009', NULL, '00000000009'),
+    (10, 'company10@example.com', 'Horizont Teszt Mérnöki Kft.', '!TEST_DISABLED!', 'Magyarország', 0, '+36000010010', NULL, '00000000010');
+
+INSERT INTO AdvertisementFromCompany (advertisement_id, c_location, offered_salary, offered_job, requirement, company_id) VALUES
+    (1, 'Székesfehérvár', 650000, 'Junior backend fejlesztő', 'C#, SQL, REST API', 1),
+    (2, 'Budapest', 420000, 'Raktári ügyintéző', 'Logisztikai ismeretek', 2),
+    (3, 'Velence', 580000, 'Rendszergazda', 'Windows és hálózati ismeretek', 3),
+    (4, 'Gárdony', 620000, 'Frontend fejlesztő', 'HTML, CSS, JavaScript', 4),
+    (5, 'Veszprém', 490000, 'Pénzügyi ügyintéző', 'Számviteli ismeretek', 5),
+    (6, 'Győr', 550000, 'Gépésztechnikus', 'Műszaki rajz olvasása', 6),
+    (7, 'Pécs', 570000, 'Szoftvertesztelő', 'Tesztelési alapismeretek', 7),
+    (8, 'Debrecen', 560000, 'Villanyszerelő', 'Szakirányú képesítés', 8),
+    (9, 'Székesfehérvár', 720000, 'Adatbázis-fejlesztő', 'MySQL, SQL', 9),
+    (10, 'Budapest', 790000, 'Gépészmérnök', 'Mérnöki diploma', 10),
+    (11, 'Velence', 680000, 'Junior backend fejlesztő', 'C#, SQL, REST API', 1),
+    (12, 'Gárdony', 450000, 'Raktári ügyintéző', 'Logisztikai ismeretek', 2),
+    (13, 'Veszprém', 610000, 'Rendszergazda', 'Windows és hálózati ismeretek', 3),
+    (14, 'Győr', 650000, 'Frontend fejlesztő', 'HTML, CSS, JavaScript', 4),
+    (15, 'Pécs', 520000, 'Pénzügyi ügyintéző', 'Számviteli ismeretek', 5),
+    (16, 'Debrecen', 580000, 'Gépésztechnikus', 'Műszaki rajz olvasása', 6),
+    (17, 'Székesfehérvár', 600000, 'Szoftvertesztelő', 'Tesztelési alapismeretek', 7),
+    (18, 'Budapest', 590000, 'Villanyszerelő', 'Szakirányú képesítés', 8),
+    (19, 'Velence', 750000, 'Adatbázis-fejlesztő', 'MySQL, SQL', 9),
+    (20, 'Gárdony', 820000, 'Gépészmérnök', 'Mérnöki diploma', 10),
+    (21, 'Veszprém', 710000, 'Junior backend fejlesztő', 'C#, SQL, REST API', 1),
+    (22, 'Győr', 480000, 'Raktári ügyintéző', 'Logisztikai ismeretek', 2),
+    (23, 'Pécs', 640000, 'Rendszergazda', 'Windows és hálózati ismeretek', 3),
+    (24, 'Debrecen', 680000, 'Frontend fejlesztő', 'HTML, CSS, JavaScript', 4),
+    (25, 'Székesfehérvár', 550000, 'Pénzügyi ügyintéző', 'Számviteli ismeretek', 5);
+
+INSERT INTO HasQualification (person_id, qualification_id) VALUES
+    (1, 4),
+    (1, 7),
+    (2, 8),
+    (2, 10),
+    (3, 5),
+    (3, 13),
+    (4, 1),
+    (4, 14),
+    (5, 13),
+    (5, 15),
+    (6, 3),
+    (6, 12),
+    (7, 6),
+    (7, 7),
+    (8, 3),
+    (8, 5),
+    (9, 4),
+    (9, 13),
+    (10, 2),
+    (10, 6),
+    (11, 2),
+    (11, 7),
+    (12, 2),
+    (12, 6),
+    (13, 6),
+    (13, 14),
+    (14, 5),
+    (14, 10),
+    (15, 1),
+    (15, 13),
+    (16, 8),
+    (16, 12),
+    (17, 2),
+    (17, 9),
+    (18, 7),
+    (18, 15),
+    (19, 2),
+    (19, 9),
+    (20, 5),
+    (20, 14),
+    (21, 10),
+    (21, 11),
+    (22, 14),
+    (22, 15),
+    (23, 6),
+    (23, 10),
+    (24, 4),
+    (24, 12),
+    (25, 1),
+    (25, 2),
+    (26, 4),
+    (26, 11),
+    (27, 5),
+    (27, 13),
+    (28, 2),
+    (28, 14),
+    (29, 4),
+    (29, 14),
+    (30, 2),
+    (30, 7);
+
+INSERT INTO Applying (person_id, advertisement_id, cv) VALUES
+    (1, 1, 'TESZT CV – 1. jelentkező; minta önéletrajz.'),
+    (2, 2, 'TESZT CV – 2. jelentkező; minta önéletrajz.'),
+    (3, 3, 'TESZT CV – 3. jelentkező; minta önéletrajz.'),
+    (4, 4, 'TESZT CV – 4. jelentkező; minta önéletrajz.'),
+    (5, 5, 'TESZT CV – 5. jelentkező; minta önéletrajz.'),
+    (6, 6, 'TESZT CV – 6. jelentkező; minta önéletrajz.'),
+    (7, 7, 'TESZT CV – 7. jelentkező; minta önéletrajz.'),
+    (8, 8, 'TESZT CV – 8. jelentkező; minta önéletrajz.'),
+    (9, 9, 'TESZT CV – 9. jelentkező; minta önéletrajz.'),
+    (10, 10, 'TESZT CV – 10. jelentkező; minta önéletrajz.'),
+    (11, 11, 'TESZT CV – 11. jelentkező; minta önéletrajz.'),
+    (12, 12, 'TESZT CV – 12. jelentkező; minta önéletrajz.'),
+    (13, 13, 'TESZT CV – 13. jelentkező; minta önéletrajz.'),
+    (14, 14, 'TESZT CV – 14. jelentkező; minta önéletrajz.'),
+    (15, 15, 'TESZT CV – 15. jelentkező; minta önéletrajz.'),
+    (16, 16, 'TESZT CV – 16. jelentkező; minta önéletrajz.'),
+    (17, 17, 'TESZT CV – 17. jelentkező; minta önéletrajz.'),
+    (18, 18, 'TESZT CV – 18. jelentkező; minta önéletrajz.'),
+    (19, 19, 'TESZT CV – 19. jelentkező; minta önéletrajz.'),
+    (20, 20, 'TESZT CV – 20. jelentkező; minta önéletrajz.'),
+    (21, 21, 'TESZT CV – 21. jelentkező; minta önéletrajz.'),
+    (22, 22, 'TESZT CV – 22. jelentkező; minta önéletrajz.'),
+    (23, 23, 'TESZT CV – 23. jelentkező; minta önéletrajz.'),
+    (24, 24, 'TESZT CV – 24. jelentkező; minta önéletrajz.'),
+    (25, 25, 'TESZT CV – 25. jelentkező; minta önéletrajz.'),
+    (26, 1, 'TESZT CV – 26. jelentkező; minta önéletrajz.'),
+    (27, 2, 'TESZT CV – 27. jelentkező; minta önéletrajz.'),
+    (28, 3, 'TESZT CV – 28. jelentkező; minta önéletrajz.'),
+    (29, 4, 'TESZT CV – 29. jelentkező; minta önéletrajz.'),
+    (30, 5, 'TESZT CV – 30. jelentkező; minta önéletrajz.'),
+    (1, 7, 'TESZT CV – 1. jelentkező; második jelentkezés.'),
+    (2, 8, 'TESZT CV – 2. jelentkező; második jelentkezés.'),
+    (3, 9, 'TESZT CV – 3. jelentkező; második jelentkezés.'),
+    (4, 10, 'TESZT CV – 4. jelentkező; második jelentkezés.'),
+    (5, 11, 'TESZT CV – 5. jelentkező; második jelentkezés.'),
+    (6, 12, 'TESZT CV – 6. jelentkező; második jelentkezés.'),
+    (7, 13, 'TESZT CV – 7. jelentkező; második jelentkezés.'),
+    (8, 14, 'TESZT CV – 8. jelentkező; második jelentkezés.'),
+    (9, 15, 'TESZT CV – 9. jelentkező; második jelentkezés.'),
+    (10, 16, 'TESZT CV – 10. jelentkező; második jelentkezés.');
+
+COMMIT;
+

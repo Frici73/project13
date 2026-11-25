@@ -13,14 +13,14 @@ CREATE TABLE ProfilPerson (
     driving_license BOOLEAN NOT NULL DEFAULT FALSE,
     p_phone_number VARCHAR(20) NOT NULL UNIQUE,
     wanted_salary INT NOT NULL CHECK (wanted_salary >= 0)
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE Qualification (
     qualification_id INT AUTO_INCREMENT PRIMARY KEY,
     degree VARCHAR(50) NOT NULL,
     type VARCHAR(50) NOT NULL,
     UNIQUE (degree, type)
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE ProfilCompany (
     company_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -32,7 +32,7 @@ CREATE TABLE ProfilCompany (
     c_phone_number VARCHAR(20) NOT NULL UNIQUE,
     c_image_profil MEDIUMBLOB,
     tax_id VARCHAR(11) NOT NULL UNIQUE
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE AdvertisementFromCompany (
     advertisement_id INT AUTO_INCREMENT PRIMARY KEY,
@@ -42,7 +42,7 @@ CREATE TABLE AdvertisementFromCompany (
     requirement TEXT NOT NULL,
     company_id INT NOT NULL,
     FOREIGN KEY (company_id) REFERENCES ProfilCompany(company_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE HasQualification (
     person_id INT NOT NULL,
@@ -50,7 +50,7 @@ CREATE TABLE HasQualification (
     PRIMARY KEY (person_id, qualification_id),
     FOREIGN KEY (person_id) REFERENCES ProfilPerson(person_id) ON DELETE CASCADE,
     FOREIGN KEY (qualification_id) REFERENCES Qualification(qualification_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
 CREATE TABLE Applying (
     person_id INT NOT NULL,
@@ -59,12 +59,8 @@ CREATE TABLE Applying (
     PRIMARY KEY (person_id, advertisement_id),
     FOREIGN KEY (person_id) REFERENCES ProfilPerson(person_id) ON DELETE CASCADE,
     FOREIGN KEY (advertisement_id) REFERENCES AdvertisementFromCompany(advertisement_id) ON DELETE CASCADE
-) ENGINE=InnoDB;
+);
 
--- Tesztadatok: minden név, elérhetőség és adószám fiktív.
--- A fizetések havi bruttó forintban értendők.
--- A jelszómezők szándékosan nem használható helyőrzők.
--- A backend feladata a valódi jelszóhash előállítása (pl. Argon2id vagy bcrypt).
 START TRANSACTION;
 
 INSERT INTO ProfilPerson (person_id, p_email, p_username, p_password, p_country, p_location, p_fake_datas, p_image_profil, driving_license, p_phone_number, wanted_salary) VALUES

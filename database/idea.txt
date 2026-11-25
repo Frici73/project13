@@ -1,6 +1,6 @@
--- Adattáblák
+-- adattáblák
 
-// Személy mint felhasználó
+// személy mint felhasználó
 ProfilPerson
     INT person_id Auto_Inc - Primary key
     VARCHAR(100) p_email - NOT NULL, UNIQUE
@@ -12,17 +12,16 @@ ProfilPerson
     MEDIUMBLOB p_image_profil
     BOOLEAN driving_license - NOT NULL, DEFAULT FALSE
     VARCHAR(20) p_phone_number - NOT NULL, UNIQUE
-    INT wanted_salary - NOT NULL, CHECK >= 0
-    // Bérigény, havi bruttó Ft
+    INT wanted_salary - NOT NULL, CHECK >= 0 // bérigény, havi bruttó Ft
 
-// Képesítések foka és típusa
+// képesítések foka és típusa
 Qualification
     INT qualification_id Auto_Inc - Primary key
     VARCHAR(50) degree - NOT NULL
     VARCHAR(50) type - NOT NULL
     UNIQUE (degree, type)
 
-// Cég mint felhasználó
+// cég mint felhasználó
 ProfilCompany
     INT company_id Auto_Inc - Primary key
     VARCHAR(100) c_email - NOT NULL, UNIQUE
@@ -34,7 +33,7 @@ ProfilCompany
     MEDIUMBLOB c_image_profil
     VARCHAR(11) tax_id - NOT NULL, UNIQUE
 
-// Cégek által közzétett hirdetések
+// cégek által közzétett hirdetések
 AdvertisementFromCompany
     INT advertisement_id Auto_Inc - Primary key
     VARCHAR(200) c_location - NOT NULL // község, utca, házszám
@@ -48,7 +47,7 @@ AdvertisementFromCompany
         company_id -> ProfilCompany.company_id
         ON DELETE CASCADE
 
--- Kapcsolatok
+-- kapcsolatok
 
 // Álláskereső és képesítés kapcsolata (N:M)
 HasQualification
